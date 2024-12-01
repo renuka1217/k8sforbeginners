@@ -13,6 +13,26 @@ sudo openssl genrsa -out user3.key 2048
 # Create a certificate signing request (CSR) using the private key
 sudo openssl req -new -key user3.key -out user3.csr
 
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank.
+For some fields, there will be a default value.
+
+-----
+Country Name (2 letter code) [AU]:US
+State or Province Name (full name) [Some-State]:California
+Locality Name (eg, city) []:San Francisco
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:dev-team
+Organizational Unit Name (eg, section) []:development
+<b> Common Name (e.g., your name or your server's hostname) []:user3 </b>
+Email Address []:user3@example.com
+
+Please enter the following 'extra' attributes
+to be sent with your certificate request
+A challenge password []:
+An optional company name []:
+
 # Sign the CSR to generate a certificate (linked with Kubernetes CA)
 sudo openssl x509 -req -in user3.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out user3.crt -days 500
 
