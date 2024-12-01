@@ -16,11 +16,11 @@ sudo openssl req -new -key user3.key -out user3.csr
 # Sign the CSR to generate a certificate (linked with Kubernetes CA)
 sudo openssl x509 -req -in user3.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out user3.crt -days 500
 
-Role and RoleBinding Setup
+# Role and RoleBinding Setup
+
 # Edit or create a Role YAML file
 vi role.yaml
 #use the role.yaml from git repo
-
 
 # Create the role from the YAML file
 kubectl create -f role.yaml
@@ -40,7 +40,7 @@ kubectl create -f rolebinding.yaml
 kubectl get rolebinding -n role
 
 
-Set Up User Credentials
+# Set Up User Credentials
 
 # Assign credentials to user3 using the certificate and key
 kubectl config set-credentials user3 --client-certificate=/home/labsuser/role/user3.crt --client-key=/home/labsuser/role/user3.key
@@ -56,7 +56,7 @@ kubectl config get-contexts
 cd ..
 cat .kube/config
 
-Role Verification and Testing
+# Role Verification and Testing
 
 # List pods in the 'role' namespace with the user-specific kubeconfig
 kubectl get pods --kubeconfig=myconf
@@ -76,7 +76,7 @@ kubectl get configmaps --kubeconfig=myconf
 kubectl get configmap my-config --kubeconfig=myconf -o yaml
 
 
-File Management and Key Distribution
+# File Management and Key Distribution
 
 # Navigate back to the home directory
 cd ..
