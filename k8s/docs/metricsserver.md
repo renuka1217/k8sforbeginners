@@ -86,9 +86,9 @@ kubectl top nodes master.example.com
 ### Troubleshooting: Identifies nodes or pods with high resource consumption.
 ### Capacity Planning: Helps ensure that resources are appropriately provisioned for current and future workloads.
 
-## By following these steps, you'll have a fully functional Kubernetes deployment and Metrics Server, which is essential for resource management and operational efficiency.
+### By following these steps, you'll have a fully functional Kubernetes deployment and Metrics Server, which is essential for resource management and operational efficiency.
 
-## If you’re looking for alternatives to Kubernetes Metrics Server, here are some tools that can serve as replacements or enhancements, depending on your needs for monitoring and observability:
+### If you’re looking for alternatives to Kubernetes Metrics Server, here are some tools that can serve as replacements or enhancements, depending on your needs for monitoring and observability:
 
 | **Tool**             | **Description**                                                                 | **Advantages**                                                                 | **Use Case**                                      |
 |-----------------------|---------------------------------------------------------------------------------|--------------------------------------------------------------------------------|--------------------------------------------------|
