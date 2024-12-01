@@ -25,7 +25,7 @@ State or Province Name (full name) [Some-State]:California
 Locality Name (eg, city) []:San Francisco
 Organization Name (eg, company) [Internet Widgits Pty Ltd]:dev-team
 Organizational Unit Name (eg, section) []:development
-** Common Name (e.g., your name or your server's hostname) []:user3 **
+**Common Name (e.g., your name or your server's hostname) []:user3**
 Email Address []:user3@example.com
 
 Please enter the following 'extra' attributes
