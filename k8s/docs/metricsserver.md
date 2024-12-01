@@ -1,12 +1,12 @@
-#Metrics Server and Use Cases
+# Metrics Server and Use Cases
 
 Metrics Server is an aggregator for resource usage data, such as CPU and memory, from Kubernetes nodes and pods. It provides this data via the Metrics API, which other Kubernetes tools, like kubectl top and the Horizontal Pod Autoscaler (HPA), rely on.
 
-#Use Cases
-###Real-Time Monitoring: View resource usage for pods and nodes.
-###Autoscaling: Supports Horizontal Pod Autoscalers (HPA) by providing resource metrics.
-###Debugging Performance Issues: Helps identify resource bottlenecks or misconfigured workloads.
-###Capacity Planning: Enables better planning and optimization of cluster resources.
+# Use Cases
+### Real-Time Monitoring: View resource usage for pods and nodes.
+### Autoscaling: Supports Horizontal Pod Autoscalers (HPA) by providing resource metrics.
+### Debugging Performance Issues: Helps identify resource bottlenecks or misconfigured workloads.
+### Capacity Planning: Enables better planning and optimization of cluster resources.
 
 Steps for Creating and Configuring the metrics server
 # Create a new YAML file for defining a deployment
@@ -79,11 +79,11 @@ kubectl top nodes --sort-by memory
 # Display resource usage for a specific node
 kubectl top nodes master.example.com
 
-#Key Use Cases:
+# Key Use Cases:
 
-###Autoscaling: Enables Horizontal Pod Autoscaler (HPA) to scale workloads dynamically based on real-time metrics.
-###Resource Monitoring: Provides data for kubectl top to observe resource usage of nodes and pods.
-###Troubleshooting: Identifies nodes or pods with high resource consumption.
-###Capacity Planning: Helps ensure that resources are appropriately provisioned for current and future workloads.
+### Autoscaling: Enables Horizontal Pod Autoscaler (HPA) to scale workloads dynamically based on real-time metrics.
+### Resource Monitoring: Provides data for kubectl top to observe resource usage of nodes and pods.
+### Troubleshooting: Identifies nodes or pods with high resource consumption.
+### Capacity Planning: Helps ensure that resources are appropriately provisioned for current and future workloads.
 
-#By following these steps, you'll have a fully functional Kubernetes deployment and Metrics Server, which is essential for resource management and operational efficiency.
+## By following these steps, you'll have a fully functional Kubernetes deployment and Metrics Server, which is essential for resource management and operational efficiency.
