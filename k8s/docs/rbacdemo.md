@@ -110,8 +110,8 @@ kubectl delete pods
 kubectl create configmap my-config --from-literal=key1=config1 --kubeconfig=myconf
 
 # View the created ConfigMap
-kubectl get configmaps --kubeconfig=myconf ; 
-kubectl get configmap my-config --kubeconfig=myconf -o yaml
+kubectl get configmaps ; 
+kubectl get configmap my-config -o yaml
 
 
 # File Management and Key Distribution (OPTIONAL steps to distribute to the worker nodes for kubectl to work for user3)
