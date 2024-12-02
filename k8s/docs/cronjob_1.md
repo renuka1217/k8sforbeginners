@@ -69,7 +69,19 @@ spec:
   - **`restartPolicy`**: Set to `OnFailure` to retry if the Job fails.
 - **`successfulJobsHistoryLimit`** and **`failedJobsHistoryLimit`**: Control how many old Job records are kept.
 
+### Explanation of schedule: "*/5 * * * *":
+
+```Uses cron syntax to specify that the job should run every minute.
+Cron Fields:
+┌───────────── minute (0 - 59)
+│ ┌───────────── hour (0 - 23)
+│ │ ┌───────────── day of the month (1 - 31)
+│ │ │ ┌───────────── month (1 - 12)
+│ │ │ │ ┌───────────── day of the week (0 - 6) (Sunday=0 or 7)
+│ │ │ │ │
+* * * * * 
 ---
+```
 
 ## **Deploy the CronJob**
 
