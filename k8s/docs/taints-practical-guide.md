@@ -188,7 +188,7 @@ Label a node to indicate that it’s suitable for running machine learning workl
 kubectl label nodes node6 machine-learning=true
 ```
 
-2. **Taint GPU Node**  
+2. **Taint Machine Learning Node that have GPUs (preferable in the cloud to try this example**  
 Taint the node to prevent non-machine-learning workloads from being scheduled on it, but allow only those pods that explicitly tolerate the taint.
 
 ```bash
