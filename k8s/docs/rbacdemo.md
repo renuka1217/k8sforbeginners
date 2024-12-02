@@ -72,23 +72,39 @@ kubectl config set-context user3-context --cluster=kubernetes --namespace=role -
 
 # Display all contexts
 kubectl config get-contexts
+### Output
+```
+labsuser@master:~/role$ kubectl config get-contexts
+CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPACE
+*         kubernetes-admin@kubernetes   kubernetes   kubernetes-admin   
+          user3-context                 kubernetes   user3              role
+```
 
-# View the current kubeconfig file
+# View the current kubeconfig file for user3 context
 	
 cd ..
 cat .kube/config
 
 # Role Verification and Testing
 
-# List pods in the 'role' namespace with the user-specific kubeconfig
-kubectl get pods --kubeconfig=myconf
+### change the context to user3-context
+
+kubectl config use-context user3-context
+
+### change the permissions for the user3 certificates
+
+cd /home/labsuser/role
+sudo chmod 666 user3.key user3.crt
+
+### List pods in the 'role' namespace with the user-specific kubeconfig
+kubectl get pods 
 
 # Deploy a test application in the 'role' namespace
-kubectl create deployment test --image=docker.io/httpd -n role --kubeconfig=myconf
+kubectl create deployment test --image=docker.io/httpd -n role
 
 # Verify the created deployment and its pods
-kubectl get deployment --kubeconfig=myconf
-kubectl get pods --kubeconfig=myconf
+kubectl get deployment
+kubectl delete pods
 
 # Create a ConfigMap in the 'role' namespace
 kubectl create configmap my-config --from-literal=key1=config1 --kubeconfig=myconf
@@ -98,7 +114,7 @@ kubectl get configmaps --kubeconfig=myconf
 kubectl get configmap my-config --kubeconfig=myconf -o yaml
 
 
-# File Management and Key Distribution
+# File Management and Key Distribution (OPTIONAL steps to distribute to the worker nodes for kubectl to work for user3)
 
 # Navigate back to the home directory
 cd ..
