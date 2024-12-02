@@ -82,7 +82,7 @@ CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPAC
 
 # View the current kubeconfig file for user3 context
 	
-cd ..
+cd .. ; 
 cat .kube/config
 
 # Role Verification and Testing
@@ -93,7 +93,7 @@ kubectl config use-context user3-context
 
 ### change the permissions for the user3 certificates
 
-cd /home/labsuser/role
+cd /home/labsuser/role ; 
 sudo chmod 666 user3.key user3.crt
 
 ### List pods in the 'role' namespace with the user-specific kubeconfig
@@ -103,14 +103,14 @@ kubectl get pods
 kubectl create deployment test --image=docker.io/httpd -n role
 
 # Verify the created deployment and its pods
-kubectl get deployment
+kubectl get deployment ; 
 kubectl delete pods
 
 # Create a ConfigMap in the 'role' namespace
 kubectl create configmap my-config --from-literal=key1=config1 --kubeconfig=myconf
 
 # View the created ConfigMap
-kubectl get configmaps --kubeconfig=myconf
+kubectl get configmaps --kubeconfig=myconf ; 
 kubectl get configmap my-config --kubeconfig=myconf -o yaml
 
 
