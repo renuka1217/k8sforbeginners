@@ -6,7 +6,10 @@ metadata:
 spec:
   containers:
     - name: test
-      image: nginx
+      image: busybox
+      command:
+       - sleep
+       - "3600"
   dnsPolicy: "None"
   dnsConfig:
     nameservers:
