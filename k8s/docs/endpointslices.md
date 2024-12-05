@@ -1,7 +1,3 @@
-Here’s a step-by-step lab tutorial explaining **EndpointSlice**, when to use it, and how to configure it with YAML files. We’ll also include troubleshooting tips.
-
----
-
 ### **What is EndpointSlice?**
 EndpointSlice is a Kubernetes resource that provides a scalable and efficient way to track network endpoints (e.g., Pods) within a cluster. Introduced to address scalability issues with traditional Endpoints, it supports:
 - Larger clusters.
