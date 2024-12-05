@@ -1,5 +1,3 @@
-Here is the updated lab tutorial for deploying a **multi-port service** using non-SSL ports, ensuring it functions seamlessly.
-
 ---
 
 # **Lab: Deploying a Multi-Port Service in Kubernetes**
