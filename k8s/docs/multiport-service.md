@@ -1,8 +1,6 @@
----
-
 # **Lab: Deploying a Multi-Port Service in Kubernetes**
 
-This updated example demonstrates deploying a pod with multiple non-SSL ports and exposing them via a `NodePort` service. We'll configure the pod to serve on two ports: **8080 (HTTP)** and **9090 (Custom Port)**.
+This example demonstrates deploying a pod with multiple non-SSL ports and exposing them via a `NodePort` service. We'll configure the pod to serve on two ports: **8080 (HTTP)** and **9090 (Custom Port)**.
 
 ---
 
@@ -167,6 +165,7 @@ kubectl delete -f multi-port-pod.yaml
 kubectl delete -f multi-port-service.yaml
 ```
 
+---
 
 ## **Summary**
 
@@ -178,4 +177,4 @@ kubectl delete -f multi-port-service.yaml
 
 ---
 
-By following this tutorial, you've successfully deployed and exposed a multi-port service in Kubernetes, demonstrating how to manage multiple ports in a real-world scenario without requiring any additional configuration.
+By following this tutorial, you've successfully deployed and exposed a multi-port service in Kubernetes, demonstrating how to manage multiple ports in a real-world scenario without requiring SSL configuration.
