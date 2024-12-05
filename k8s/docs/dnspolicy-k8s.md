@@ -1,6 +1,6 @@
 # **Lab: Configuring DNS for Kubernetes Services and Pods**
 
-This lab demonstrates how to configure and verify DNS in Kubernetes, ensuring proper network resolution and connectivity for services and pods.
+This lab demonstrates how to configure and verify DNS in Kubernetes, ensuring proper network resolution and connectivity for services and pods. It also explores advanced DNS configurations using `hostNetwork`, `dnsPolicy`, and `dnsConfig` to handle specific use cases.
 
 ---
 
@@ -8,6 +8,7 @@ This lab demonstrates how to configure and verify DNS in Kubernetes, ensuring pr
 1. Understand and verify the default DNS setup in Kubernetes.
 2. Perform DNS queries to test connectivity.
 3. Configure DNS policies and custom DNS configurations for pods.
+4. Explore advanced configurations for `hostNetwork` and custom DNS (`dnsPolicy: None`).
 
 ---
 
@@ -129,111 +130,134 @@ exit
 
 ---
 
-## **3. Configuring DNS Policies**
+## **3. Advanced Configurations**
 
-### **Step 1: Create a DNS Policy**
-Create a YAML file for a pod with a custom DNS policy:
+### **3.1 Configuring Host Network with DNS Policy**
 
-**`dnspolicy.yaml`**
+**YAML File**:
 ```yaml
 apiVersion: v1
 kind: Pod
 metadata:
-  name: busybox
-  namespace: default
+  name: busybox-hostnetwork
 spec:
   containers:
-  - image: busybox:1.28
-    command:
-      - sleep
-      - "3600"
-    name: busybox
-  restartPolicy: Always
+  - name: busybox
+    image: busybox:1.28
+    command: ["sleep", "3600"]
   hostNetwork: true
   dnsPolicy: ClusterFirstWithHostNet
 ```
 
-Apply the file:
-```bash
-kubectl apply -f dnspolicy.yaml
-```
+**Explanation**:
+- **`hostNetwork: true`**: The pod uses the host's network stack, sharing its IP and bypassing Kubernetes networking.
+- **`dnsPolicy: ClusterFirstWithHostNet`**: Ensures the pod can resolve both Kubernetes service names and external DNS names.
 
-Verify the pod:
-```bash
-kubectl get pods
-kubectl describe pod busybox
-```
+**Deploy and Verify**:
+1. Apply the configuration:
+   ```bash
+   kubectl apply -f busybox-hostnetwork.yaml
+   ```
+2. Verify the pod:
+   ```bash
+   kubectl describe pod busybox-hostnetwork
+   ```
+3. Execute DNS queries inside the pod:
+   ```bash
+   kubectl exec -it busybox-hostnetwork -- nslookup my-nginx
+   ```
 
 ---
 
-## **4. Creating Custom DNS Configurations**
+### **3.2 Configuring Custom DNS for a Pod**
 
-### **Step 1: Define a Custom DNS Configuration**
-Create a YAML file for a pod with custom DNS settings:
-
-**`dnsconfig.yaml`**
+**YAML File**:
 ```yaml
 apiVersion: v1
 kind: Pod
 metadata:
-  name: dnscustomconfig
-  namespace: default
+  name: custom-dns-pod
 spec:
   containers:
-    - name: test
-      image: nginx
+  - name: nginx
+    image: nginx
   dnsPolicy: "None"
   dnsConfig:
     nameservers:
-      - 1.2.3.4
+      - 8.8.8.8
     searches:
-      - ns1.svc.cluster-domain.example
-      - my.dns.search.suffix
+      - my-custom.search.suffix
     options:
       - name: ndots
-        value: "2"
-      - name: edns0
+        value: "1"
 ```
 
-Apply the file:
-```bash
-kubectl apply -f dnsconfig.yaml
-```
+**Explanation**:
+- **`dnsPolicy: None`**: Disables default DNS configuration; the pod uses the custom settings provided in `dnsConfig`.
+- **`dnsConfig.nameservers`**: Specifies the DNS server to use (`8.8.8.8`).
+- **`dnsConfig.searches`**: Appends custom search suffixes during resolution.
+- **`dnsConfig.options`**:
+  - `ndots=1`: Treat names with fewer than 1 dot as incomplete and append search domains.
 
-Verify the DNS configuration inside the pod:
-```bash
-kubectl exec -it dnscustomconfig -- cat /etc/resolv.conf
-```
+**Deploy and Verify**:
+1. Apply the configuration:
+   ```bash
+   kubectl apply -f custom-dns-pod.yaml
+   ```
+2. Verify the pod’s DNS configuration:
+   ```bash
+   kubectl exec -it custom-dns-pod -- cat /etc/resolv.conf
+   ```
+3. Test DNS resolution:
+   ```bash
+   kubectl exec -it custom-dns-pod -- nslookup google.com
+   ```
 
 ---
 
-## **What We’re Trying to Accomplish**
-
-1. **Default DNS Validation**: Ensure the CoreDNS setup in the cluster is functional for service discovery.
-2. **DNS Queries**: Verify service name resolution (e.g., `my-nginx`) to test internal and external DNS resolution.
-3. **Custom DNS Configuration**: Understand how to customize DNS policies for specific pods.
-
----
-
-## **Verification**
-
-1. Validate DNS resolution by performing `nslookup` and `curl` commands for:
-   - External domains (e.g., `google.com`).
-   - Kubernetes service domains (e.g., `my-nginx.default.svc.cluster.local`).
-2. Confirm custom DNS settings inside the pod by checking `/etc/resolv.conf`.
-
----
-
-## **Clean Up**
+## **4. Clean Up**
 
 To delete all resources created during this lab:
 ```bash
 kubectl delete -f nginx.yaml
 kubectl delete -f my-nginx-service.yaml
-kubectl delete -f dnspolicy.yaml
-kubectl delete -f dnsconfig.yaml
+kubectl delete -f busybox-hostnetwork.yaml
+kubectl delete -f custom-dns-pod.yaml
 ```
 
 ---
 
-This lab demonstrates how to configure and test DNS for services and pods in Kubernetes. By following these steps, you ensure proper name resolution and connectivity in your Kubernetes cluster. Let me know if you encounter any issues!
+## **What We’re Accomplishing**
+1. **Default DNS Validation**: Ensure Kubernetes DNS works for service discovery.
+2. **Host Networking**: Validate the behavior of pods using the host network stack.
+3. **Custom DNS Configuration**: Demonstrate how to override Kubernetes DNS with custom settings.
+
+---
+
+## **Verification**
+1. Run `nslookup` commands to test DNS resolution.
+2. Check `/etc/resolv.conf` in the custom DNS pod to ensure the configuration matches `dnsConfig`.
+
+Here’s the comparison in a table format for the DNS configurations:
+
+---
+
+| **Configuration**                     | **Purpose**                                                                                       | **Behavior**                                                                                              |
+|---------------------------------------|---------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
+| **`hostNetwork: true`**               | Enables the pod to use the host's network stack.                                                  | Shares the host's IP address and network while bypassing Kubernetes networking (e.g., CNI plugins).      |
+| **`dnsPolicy: ClusterFirstWithHostNet`** | Ensures Kubernetes service DNS resolution works even with `hostNetwork: true`.                   | Resolves both Kubernetes service names (e.g., `my-service.default.svc.cluster.local`) and external DNS.  |
+| **`dnsPolicy: None`**                 | Disables the default Kubernetes DNS setup for the pod.                                            | Requires custom DNS settings to be defined using `dnsConfig`.                                            |
+| **`dnsConfig.nameservers`**           | Specifies custom DNS servers for the pod.                                                        | Overrides the default Kubernetes DNS servers (e.g., CoreDNS).                                            |
+| **`dnsConfig.searches`**              | Adds custom DNS search domains for resolving short names.                                         | Appends the domains during DNS resolution (e.g., `my-service` becomes `my-service.my.dns.search.suffix`).|
+| **`dnsConfig.options`**               | Customizes DNS resolution behavior.                                                              | Includes advanced settings like `ndots` (e.g., required dots for FQDN) and `edns0` (extended DNS options). |
+
+---
+
+### **How to Use This Table**
+- Use **`hostNetwork` and `ClusterFirstWithHostNet`** for pods needing access to both Kubernetes DNS and external networks via the host.
+- Use **`dnsPolicy: None` with `dnsConfig`** when you need full control over DNS settings (e.g., for testing custom DNS resolvers or specific search domains). 
+
+This table provides a concise comparison of the DNS settings and their intended purposes in Kubernetes.
+---
+
+This combined lab covers DNS basics and advanced configurations, ensuring you have the knowledge to customize DNS for Kubernetes workloads effectively.
