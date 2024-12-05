@@ -167,7 +167,6 @@ kubectl delete -f multi-port-pod.yaml
 kubectl delete -f multi-port-service.yaml
 ```
 
----
 
 ## **Summary**
 
