@@ -80,7 +80,7 @@ kubectl create secret tls tls-cert --key ingress.key --cert ingress.crt
 
 #### **4. Configure and Apply Ingress Rules**
 
-4.1 Create an Ingress rule file (`rule.yaml`):
+4.1 Create an Ingress rule file (`ingress-rule.yaml`):
 ```yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -109,7 +109,7 @@ spec:
 
 4.2 Apply the Ingress rule:
 ```bash
-kubectl apply -f rule.yaml
+kubectl apply -f ingress-rule.yaml
 kubectl get ingress
 ```
 
