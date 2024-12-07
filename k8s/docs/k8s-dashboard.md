@@ -1,4 +1,3 @@
-```markdown
 # Tutorial: Setting Up Kubernetes Dashboard on an Existing Cluster
 
 ## Introduction
@@ -21,7 +20,6 @@ The **Kubernetes Dashboard** is a general-purpose, web-based UI for Kubernetes c
 
 Now, let's proceed with the step-by-step setup of Kubernetes Dashboard on your existing Kubernetes cluster.
 
----
 
 ## Prerequisites
 - **Helm** (package manager for Kubernetes).
