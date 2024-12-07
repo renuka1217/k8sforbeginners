@@ -141,4 +141,3 @@ Congratulations! You've successfully set up the Kubernetes Dashboard on your exi
 Explore the features of the Dashboard to streamline your Kubernetes operations and enhance your cluster management experience.
 
 **Happy dashboarding!**
-```
