@@ -70,8 +70,10 @@ helm status kubernetes-dashboard --namespace kubernetes-dashboard
 ### 3.1 Port Forward to Access the Dashboard
 Run the following command to port-forward and access the Dashboard:
 
+Note: 8444 is used since 8443 is used by Graphical server in some Debian machines.
+
 ```bash
-kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard-kong-proxy 8443:443
+kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard-kong-proxy 8444:443
 ```
 
 ### 3.2 Obtain Access Token
@@ -98,7 +100,7 @@ Copy the generated token and use it on the Dashboard login page that prompts for
 Open your browser and navigate to:
 
 ```
-https://localhost:8443
+https://localhost:8444
 ```
 
 Accept the SSL certificate warning and explore various workloads like **Pods**, **Deployments**, and **Services**. You can also try scaling your deployments using the graphical interface.
