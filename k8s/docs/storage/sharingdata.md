@@ -75,5 +75,3 @@ spec:
      ```
 
 Both containers should display the content `Shared data from app-container-2`, indicating that the data was successfully shared between the containers in the same Pod.
-
-```
