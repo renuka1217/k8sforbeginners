@@ -124,7 +124,13 @@ spec:
 
 ### **Step 3: Create Pod with Pod Anti-Affinity (Avoiding Same Node)**
 
-Next, we will create a pod that should not be scheduled on the same node as the `production-pod`. This is achieved using pod anti-affinity.
+Label the pods so we can apply anti-affinity based on these labels.
+
+```bash
+kubectl label pods production-pod env=production
+```
+
+Next, we will create another pod that should not be scheduled on the same node as the `production-pod`. This is achieved using pod anti-affinity.
 
 ```yaml
 apiVersion: v1
