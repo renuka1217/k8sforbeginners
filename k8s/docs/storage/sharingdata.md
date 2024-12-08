@@ -1,7 +1,3 @@
-Absolutely! Let's go step by step, starting with the first topic: **Sharing Data Between Containers in the Same Pod**. I’ll provide you the full markdown content with sections, and you can copy-paste each separately as you need.
-
----
-
 ### **1. Sharing Data Between Containers in the Same Pod**
 
 ```markdown
