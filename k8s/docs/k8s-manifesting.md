@@ -1,4 +1,4 @@
-#**Kubernetes Manifest Management and Common Templating Tools**
+##Kubernetes Manifest Management and Common Templating Tools
 
 In this tutorial, we will dive into Kubernetes manifest management and explore common templating tools like **Helm**, **Kustomize**, and others to manage configuration files efficiently. Proper management of manifests ensures scalable, maintainable, and reusable Kubernetes deployments.
 
