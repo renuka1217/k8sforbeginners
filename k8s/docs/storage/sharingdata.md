@@ -1,6 +1,6 @@
 ### **1. Sharing Data Between Containers in the Same Pod**
 
-```markdown
+
 # 1. Sharing Data Between Containers in the Same Pod
 
 ## 1.1 Overview
