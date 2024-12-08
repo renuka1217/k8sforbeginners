@@ -1,8 +1,4 @@
-Here’s a fully expanded, detailed version of the Kubernetes storage guide, with elaboration on each topic, use cases, and YAML examples. This guide aims to be comprehensive and serve as a valuable resource for Kubernetes training.
-
----
-
-# **Kubernetes Storage: Detailed Documentation**
+# **Kubernetes Storage: Practical Guide to concepts and examples**
 
 ---
 
