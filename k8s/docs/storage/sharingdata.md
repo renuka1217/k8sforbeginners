@@ -1,7 +1,6 @@
-### **1. Sharing Data Between Containers in the Same Pod**
+# **1. Sharing Data Between Containers in the Same Pod**
 
 
-# 1. Sharing Data Between Containers in the Same Pod
 
 ## 1.1 Overview
 In Kubernetes, a Pod is a group of one or more containers that share the same network namespace and storage volumes. Sharing data between containers within the same Pod can be achieved using shared volumes. These volumes allow containers to access the same data and ensure persistence across container restarts.
