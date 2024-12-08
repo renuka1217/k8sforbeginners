@@ -1,6 +1,3 @@
-#**2. Mounting Pod Files to Host with hostPath**
-
-```markdown
 # 2. Mounting Pod Files to Host with hostPath
 
 ## 2.1 Overview
