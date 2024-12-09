@@ -146,6 +146,7 @@ spec:
 
 7. **Verify Data Persistence**:
    Verify that data written by one container is accessible by the other container. To test persistence:
+   
    ```bash
   kubectl exec -it multi-container-pod -c app-container-2 -- sh -c "echo 'New log entry' >> /usr/share/nginx/html/log.txt"
   kubectl exec -it multi-container-pod -c app-container-1 -- cat /usr/share/nginx/html/log.txt
