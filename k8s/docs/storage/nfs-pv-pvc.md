@@ -48,8 +48,8 @@ spec:
   volumeMode: Filesystem
   storageClassName: manual
   nfs:
-    path: /srv/nfs/data
-    server: <NFS_SERVER_IP>  # Replace with the actual NFS server IP address
+    path: /mnt/nfs_mount
+    server: 172.31.29.84  # Replace with the actual NFS server IP address (our nfs server is running on master node that has this IP).
 ```
 
 ### Explanation of the YAML:
@@ -145,4 +145,4 @@ spec:
    ls /usr/share/nginx/html
    ```
 
-   You should see the content from the NFS-mounted directory (`/srv/nfs/data`).
+   You should see the content from the NFS-mounted directory (`/mnt/nfs_mount`).
