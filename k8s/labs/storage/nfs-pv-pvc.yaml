@@ -11,8 +11,8 @@ spec:
   volumeMode: Filesystem
   storageClassName: manual
   nfs:
-    path: /srv/nfs/data
-    server: 172.31.18.76  # Replace with the actual NFS server IP address
+    path: /mnt/nfs_share
+    server: 172.31.29.84  # Replace with the actual NFS server IP address
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
