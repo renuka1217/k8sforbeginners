@@ -148,7 +148,7 @@ spec:
    Verify that data written by one container is accessible by the other container. To test persistence:
    
    ```
-  kubectl exec -it multi-container-pod -c app-container-2 -- sh -c "echo 'New log entry' >> /usr/share/nginx/html/log.tx"
+  kubectl exec -it multi-container-pod -c app-container-2 -- sh -c "echo \'New log entry\' >> /usr/share/nginx/html/log.txt"
   kubectl exec -it multi-container-pod -c app-container-1 -- cat /usr/share/nginx/html/log.txt
    ```
    The data should be visible in both containers.
