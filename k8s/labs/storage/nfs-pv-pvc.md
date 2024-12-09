@@ -37,7 +37,7 @@ This will install the necessary packages to run the NFS server on your Debian ma
 The NFS server will share a specific directory. For this example, let's create a directory `/mnt/nfs_share` to share.
 
 ```bash
-sudo mkdir -p /mnt/nfs_share
+sudo mkdir -p /mnt/nfs_share && chmod -R 777 /mnt/nfs_share
 ```
 
 Next, we need to configure which directories the server will export. Edit the `/etc/exports` file:
