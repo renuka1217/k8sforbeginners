@@ -138,5 +138,73 @@ spec:
    kubectl exec -it hostpath-pod -- /bin/bash
    ls /usr/share/nginx/html
    ```
+You should see the content from the mounted directory (`/mnt/data` on the host node).
 
-   You should see the content from the mounted directory (`/mnt/data` on the host node).
+---
+
+# Access Modes
+
+When defining these storage resources, **access modes** specify how a volume can be mounted by pods. Here's a detailed explanation of the main access modes available in Kubernetes:
+
+---
+
+### 1. **ReadWriteOnce (RWO)**  
+   - **Description**: The volume can be mounted as read-write by a single node.  
+   - **Use Case**: Ideal for applications that require exclusive access to a volume, such as single-node databases or applications that don't share data across nodes.  
+   - **Limitations**:  
+     - Only one pod on one node can write to this volume at a time.  
+     - The volume can be used by multiple pods on the same node (e.g., with shared `hostPath`).
+
+---
+
+### 2. **ReadOnlyMany (ROX)**  
+   - **Description**: The volume can be mounted as read-only by many nodes.  
+   - **Use Case**: Useful for workloads that need to share static, unchanging data, such as configuration files, logs, or media files.  
+   - **Limitations**:  
+     - The data in the volume cannot be modified by any pod.  
+     - Multiple pods across multiple nodes can read the data.
+
+---
+
+### 3. **ReadWriteMany (RWX)**  
+   - **Description**: The volume can be mounted as read-write by multiple nodes.  
+   - **Use Case**: Suitable for shared storage scenarios, such as distributed file systems, shared logs, or collaborative workloads like web servers.  
+   - **Limitations**:  
+     - Requires storage that supports simultaneous read-write access across nodes, such as NFS, Ceph, or cloud-native solutions like GCP Filestore or AWS EFS.
+
+---
+
+### 4. **ReadWriteOncePod (RWOP)**  
+   - **Description**: The volume can be mounted as read-write by a single pod, even if other pods are on the same node.  
+   - **Use Case**: Useful for strict isolation scenarios where only one pod should have write access.  
+   - **Limitations**:  
+     - Supported only by specific volume plugins like CSI drivers.
+
+---
+
+### How These Access Modes Work with PV and PVC
+1. **Persistent Volume (PV)**  
+   A PV is a storage resource in the cluster, and its access mode is defined when the volume is provisioned. It declares how a volume can be accessed.  
+
+2. **Persistent Volume Claim (PVC)**  
+   A PVC requests a storage resource with a specific access mode. Kubernetes binds a PVC to a PV that satisfies the requested mode.  
+
+### Compatibility with Storage Classes
+- The underlying **StorageClass** or storage backend determines the supported access modes.
+- For example, **GCP Filestore** supports `ReadWriteMany`, while **GCE Persistent Disks** typically support only `ReadWriteOnce`.
+
+---
+
+### Summary of Access Modes
+
+| **Access Mode**   | **Multiple Pods?**     | **Multiple Nodes?**    | **Read/Write Capabilities**   | **Common Use Case**              |
+|--------------------|------------------------|-------------------------|--------------------------------|-----------------------------------|
+| **ReadWriteOnce**  | Yes (single node)      | No                      | Read-Write (single node)       | Databases, single-instance apps  |
+| **ReadOnlyMany**   | Yes                   | Yes                     | Read-Only                     | Config files, shared data         |
+| **ReadWriteMany**  | Yes                   | Yes                     | Read-Write (multiple nodes)    | Shared storage, logs              |
+| **ReadWriteOncePod**| No (single pod only)  | No                      | Read-Write (single pod)        | Isolated app environments         |
+
+---
+
+
+   
