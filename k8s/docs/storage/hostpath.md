@@ -49,7 +49,7 @@ In this example:
 ## 2.7 Verification Steps
 
 1. **Create the Directory on the Host**:
-   Ensure that the directory `/tmp/host-directory` exists on the host node:
+   Ensure that the directory `/tmp/host-directory` exists on both the worker nodes (not on the master node):
    ```bash
    mkdir /tmp/host-directory
    ```
