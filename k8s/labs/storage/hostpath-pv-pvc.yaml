@@ -19,6 +19,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: hostpath-pvc
 spec:
+  storageClassName: manual
   accessModes:
     - ReadWriteOnce
   resources:
