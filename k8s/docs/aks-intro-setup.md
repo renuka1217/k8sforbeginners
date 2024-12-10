@@ -91,9 +91,6 @@ az aks create \
 
 ---
 
-Here is the information in Markdown format that you can insert into Part 1 of your AKS tutorial:
-
-```markdown
 ### **4. Connect to the AKS Cluster**
 
 To manage your AKS cluster, you need to authenticate and connect using `kubectl`. This can be done via the Azure CLI on your local machine or through the **Azure Cloud Shell** (a browser-based terminal accessible in the Azure portal).
