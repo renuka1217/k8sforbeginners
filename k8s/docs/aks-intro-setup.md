@@ -7,6 +7,7 @@
 Azure Kubernetes Service (AKS) is a fully managed Kubernetes service provided by Microsoft Azure. It abstracts the complexities of Kubernetes setup and maintenance, enabling developers to focus on deploying and managing containerized applications. 
 
 #### **Features of AKS:**
+
 1. **Managed Kubernetes Control Plane**: Azure handles upgrades, patches, and scaling of the Kubernetes control plane.
 2. **Integration with Azure Services**: Native integration with Azure Monitor, Azure Active Directory (AAD), and other Azure services for enhanced observability and security.
 3. **Networking Options**: 
@@ -21,12 +22,12 @@ Azure Kubernetes Service (AKS) is a fully managed Kubernetes service provided by
 
 | Feature                  | **Azure AKS**                   | **Amazon EKS**                  | **Google GKE**                  |
 |--------------------------|----------------------------------|----------------------------------|----------------------------------|
-| **Control Plane Cost**   | Free (pay for worker nodes only) | ~$74/month for control plane     | Free for basic cluster, $0.10/hour for autopilot/control plane |
-| **Networking**           | Azure CNI, Kubenet              | VPC CNI                          | VPC-native, Alias IPs           |
-| **Autoscaling**          | Supported                       | Supported                        | Supported                       |
-| **Integrated Monitoring**| Azure Monitor                   | CloudWatch                       | Cloud Monitoring                |
-| **Hybrid Options**       | Azure Arc                       | EKS Anywhere                     | Anthos                          |
-| **Multi-Zone Clusters**  | Supported                       | Supported                        | Supported                       |
+| **Control Plane Cost**    | Free (pay for worker nodes only) | ~$74/month for control plane     | Free for basic cluster, $0.10/hour for autopilot/control plane |
+| **Networking**            | Azure CNI, Kubenet              | VPC CNI                          | VPC-native, Alias IPs           |
+| **Autoscaling**           | Supported                       | Supported                        | Supported                       |
+| **Integrated Monitoring** | Azure Monitor                   | CloudWatch                       | Cloud Monitoring                |
+| **Hybrid Options**        | Azure Arc                       | EKS Anywhere                     | Anthos                          |
+| **Multi-Zone Clusters**   | Supported                       | Supported                        | Supported                       |
 
 **Why Choose AKS?**  
 - Strong integration with Azure services.  
@@ -181,7 +182,7 @@ aks-nodepool1-12345678-vmss000001   Ready    agent   10m     v1.24.9
 - **Worker Nodes**: These are listed, and you can manage them directly (scale, upgrade, etc.).
 
 If you need to interact with the control plane, you would typically use Azure CLI or other management tools rather than `kubectl`.
-```
+
 ---
 
 #### **5. Delete the AKS Cluster**
@@ -195,4 +196,3 @@ az aks delete \
     --yes \
     --no-wait
 ```
----
