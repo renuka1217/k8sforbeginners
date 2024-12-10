@@ -91,6 +91,9 @@ az aks create \
 
 ---
 
+Here is the information in Markdown format that you can insert into Part 1 of your AKS tutorial:
+
+```markdown
 ### **4. Connect to the AKS Cluster**
 
 To manage your AKS cluster, you need to authenticate and connect using `kubectl`. This can be done via the Azure CLI on your local machine or through the **Azure Cloud Shell** (a browser-based terminal accessible in the Azure portal).
@@ -149,7 +152,7 @@ Once authenticated, verify your connection to the AKS cluster by running:
 kubectl get nodes
 ```
 
-If successful, this command will display a list of nodes in your cluster, similar to the following output with the relevant version chosen for the installation:
+If successful, this command will display a list of nodes in your cluster, similar to the following output:
 
 ```
 NAME                                STATUS   ROLES   AGE     VERSION
@@ -161,6 +164,27 @@ aks-nodepool1-12345678-vmss000001   Ready    agent   10m     v1.24.9
 > ```bash
 > az aks install-cli
 > ```
+
+---
+
+#### **Will the Master Node Appear in the Node List?**
+
+No, the **master node** (control plane) will **not** be shown when you run the `kubectl get nodes` command.
+
+In Azure Kubernetes Service (AKS), the **master node** is fully managed by Azure. The control plane is abstracted away, meaning you do not need to manage it directly. You will only see the **worker nodes** in the `kubectl get nodes` output.
+
+Example output:
+```
+NAME                                STATUS   ROLES   AGE     VERSION
+aks-nodepool1-12345678-vmss000000   Ready    agent   10m     v1.24.9
+aks-nodepool1-12345678-vmss000001   Ready    agent   10m     v1.24.9
+```
+
+- **Control Plane**: Azure manages it and ensures it's always running with high availability, but you cannot interact with it directly or see it via `kubectl`.
+- **Worker Nodes**: These are listed, and you can manage them directly (scale, upgrade, etc.).
+
+If you need to interact with the control plane, you would typically use Azure CLI or other management tools rather than `kubectl`.
+```
 
 ---
 
