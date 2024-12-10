@@ -149,7 +149,7 @@ Once authenticated, verify your connection to the AKS cluster by running:
 kubectl get nodes
 ```
 
-If successful, this command will display a list of nodes in your cluster, similar to the following output:
+If successful, this command will display a list of nodes in your cluster, similar to the following output with the relevant version chosen for the installation:
 
 ```
 NAME                                STATUS   ROLES   AGE     VERSION
