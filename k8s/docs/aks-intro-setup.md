@@ -182,10 +182,9 @@ aks-nodepool1-12345678-vmss000001   Ready    agent   10m     v1.24.9
 
 If you need to interact with the control plane, you would typically use Azure CLI or other management tools rather than `kubectl`.
 ```
-
 ---
 
-### **5. Delete the AKS Cluster**
+#### **5. Delete the AKS Cluster**
 
 When the lab is complete, delete the cluster to avoid incurring unnecessary costs:
 
