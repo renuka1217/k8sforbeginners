@@ -38,6 +38,8 @@ Azure Kubernetes Service (AKS) is a fully managed Kubernetes service provided by
 
 ### **3. Step-by-Step AKS Lab**
 
+Launch Bash Shell.
+
 #### **Step 1: Create a Resource Group**
 
 If the resource group is already created during the Cloud Shell filestore process, skip this step.
@@ -84,6 +86,9 @@ az network vnet subnet show \
 
 #### **Step 4: Create the AKS Cluster**
 
+Replace the resource group name with the correct name.  Replace the vnet-subnet-id name with the correct name from Step 3.
+
+
 ```bash
 az aks create \
     --resource-group Regroup_3etcnCVxcbW6UKd52_7oNl \
@@ -122,6 +127,8 @@ To manage your AKS cluster, you need to authenticate and connect using `kubectl`
 
 2. **Retrieve AKS Cluster Credentials**:
    Use the `az aks get-credentials` command to configure access to your cluster:
+   Replace the resource group name with the correct name.
+   
    ```bash
    az aks get-credentials \
        --resource-group Regroup_3etcnCVxcbW6UKd52_7oNl \
@@ -178,6 +185,8 @@ aks-nodepool1-12345678-vmss000001   Ready    agent   10m     v1.24.9
 No, the **master node** (control plane) will **not** be shown when you run the `kubectl get nodes` command.
 
 In Azure Kubernetes Service (AKS), the **master node** is fully managed by Azure. The control plane is abstracted away, meaning you do not need to manage it directly. You will only see the **worker nodes** in the `kubectl get nodes` output.
+
+Note: Kubernetes version will be different on the lab session when cluster is created and thats okay.
 
 Example output:
 ```
