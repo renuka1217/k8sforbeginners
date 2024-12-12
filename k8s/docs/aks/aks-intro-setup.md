@@ -40,15 +40,23 @@ Azure Kubernetes Service (AKS) is a fully managed Kubernetes service provided by
 
 #### **Step 1: Create a Resource Group**
 
+If the resource group is already created during the Cloud Shell filestore process, skip this step.
+
 ```bash
 az group create \
     --name Regroup_3etcnCVxcbW6UKd52_7oNl \
     --location eastus
 ```
+To list the available group, 
 
+```
+az group list
+```
 ---
 
 #### **Step 2: Create a Virtual Network (VNet) and Subnet**
+
+Replace the resource group name with the correct name.  
 
 ```bash
 az network vnet create \
