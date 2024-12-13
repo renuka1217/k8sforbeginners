@@ -456,7 +456,7 @@ By following these steps, you can successfully diagnose and resolve issues causi
 ---
 
 
-### Section 5: Understanding Container Logs
+## Section 5: Understanding Container Logs
 
 In this section, you will learn how to check and access container logs using `crictl` commands. These logs are crucial for troubleshooting and understanding container behavior.
 
@@ -489,7 +489,7 @@ By following these steps, you have successfully demonstrated how to use `crictl`
 
 ---
 
-### Section 6: Analyzing Pod Logs and Troubleshooting Pod Issues
+## Section 6: Analyzing Pod Logs and Troubleshooting Pod Issues
 
 In this section, you will analyze pod logs, troubleshoot common pod and container issues, and explore scenarios such as tainting nodes, incorrect image names, and various pod/container status problems.
 
@@ -691,7 +691,7 @@ Here is the revised **Section 7: Understanding Application Troubleshooting** wit
 
 ---
 
-### Section 7: Understanding Application Troubleshooting
+## Section 7: Understanding Application Troubleshooting
 
 In this section, you will learn how to set up a Kubernetes application pod, diagnose potential issues, and implement corrections to ensure successful deployment and smooth operation of the application.
 
@@ -864,7 +864,7 @@ By following these steps, you will be able to set up a Kubernetes pod, diagnose 
 
 ---
 
-### Section 8: Handling Component Failure Threshold
+## Section 8: Handling Component Failure Threshold
 
 In this section, you will learn how to check the health of your Kubernetes cluster, including the nodes and overall cluster health status, and how to diagnose issues that may arise due to component failures.
 
@@ -933,7 +933,7 @@ By following these steps, you can successfully gather diagnostic information abo
 
 ---
 
-### Section 9: Troubleshooting Networking Issues
+## Section 9: Troubleshooting Networking Issues
 
 In this section, you will learn how to troubleshoot networking issues by setting up an `httpd` pod, creating an `httpd` service, checking pod labels, and testing the service connectivity.
 
@@ -1096,7 +1096,7 @@ By following these steps, you will have successfully set up an `httpd` pod and s
 
 ---
 
-### Additional Reading
+## Additional Reading
 
 For more in-depth understanding, you can refer to the following resources:
 
@@ -1106,7 +1106,7 @@ For more in-depth understanding, you can refer to the following resources:
 
 ---
 
-### Importance of Troubleshooting Skills
+## Importance of Troubleshooting Skills
 
 In a **job** or **interview** scenario, troubleshooting skills are highly valued as they demonstrate your ability to solve complex problems under pressure. For example, during an interview for a Kubernetes-related position, employers will often ask you to troubleshoot a Kubernetes cluster or application failure. Having hands-on experience in diagnosing and fixing issues with networking, pods, containers, and services will set you apart.
 
