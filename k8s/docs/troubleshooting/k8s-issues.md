@@ -387,9 +387,6 @@ By following these steps, you can successfully diagnose and resolve issues causi
 
 ---
 
-Sure! Here's Section 5, formatted for you to append to the original guide:
-
----
 
 ### Section 5: Understanding Container Logs
 
