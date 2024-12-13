@@ -421,6 +421,202 @@ By following these steps, you have successfully demonstrated how to use `crictl`
 
 ---
 
+### Section 6: Analyzing Pod Logs and Troubleshooting Pod Issues
+
+In this section, you will analyze pod logs, troubleshoot common pod and container issues, and explore scenarios such as tainting nodes, incorrect image names, and various pod/container status problems.
+
+---
+
+#### 6.1 Configure and Verify Nginx Deployment
+
+Follow the steps to configure and deploy an Nginx application in Kubernetes.
+
+1. **Create a Configuration File for Nginx Deployment:**
+   - Create a file `nginx.yaml` for your Nginx deployment:
+     ```bash
+     vi nginx.yaml
+     ```
+
+   2. **Insert the Nginx Deployment Configuration:**
+      Insert the following YAML configuration:
+      ```yaml
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        labels:
+          app: nginx
+        name: nginx
+      spec:
+        replicas: 1
+        selector:
+          matchLabels:
+            app: nginx
+        template:
+          metadata:
+            labels:
+              app: nginx
+          spec:
+            containers:
+            - image: nginx
+              name: nginx
+      ```
+
+   3. **Create the Nginx Deployment:**
+      ```bash
+      kubectl create -f nginx.yaml
+      ```
+
+   4. **Verify the Deployment and Pod Status:**
+      ```bash
+      kubectl get deployments
+      kubectl get pods
+      ```
+
+   5. **View the Logs of the Nginx Pod:**
+      ```bash
+      kubectl logs nginx-7854ff8877-mvrtr
+      ```
+
+---
+
+#### 6.2 Tainting Worker Nodes and Deployment Failures
+
+1. **Taint the Worker Node:**
+   - Taint the worker node to prevent any pods from being scheduled on it:
+     ```bash
+     kubectl taint nodes worker-node-1 key=value:NoSchedule
+     ```
+
+2. **Check Deployment Status:**
+   - After tainting the node, check the status of the deployment and pods:
+     ```bash
+     kubectl get deployments
+     kubectl get pods
+     ```
+     **Expected Outcome:** The pod(s) will not be scheduled, and the deployment will not reach the "READY" state.
+
+3. **Troubleshooting the Issue:**
+   - To resolve the issue, you can either:
+     - Remove the taint from the node:
+       ```bash
+       kubectl taint nodes worker-node-1 key=value:NoSchedule-
+       ```
+     - Or, you can add a toleration in your Nginx deployment YAML to allow the pod to be scheduled on tainted nodes:
+       ```yaml
+       spec:
+         template:
+           spec:
+             tolerations:
+             - key: "key"
+               operator: "Equal"
+               value: "value"
+               effect: "NoSchedule"
+       ```
+
+---
+
+#### 6.3 Troubleshooting Incorrect Image Names
+
+1. **Use an Incorrect Image Name:**
+   - Modify your `nginx.yaml` to use a non-existent image (e.g., `nginx:wrongtag`):
+     ```yaml
+     containers:
+     - image: nginx:wrongtag
+       name: nginx
+     ```
+
+2. **Check the Pod Status:**
+   - After applying the deployment with the incorrect image, check the pod status:
+     ```bash
+     kubectl get pods
+     ```
+
+   **Expected Outcome:** The pod will be stuck in `ImagePullBackOff` or `ErrImagePull` status.
+
+3. **Troubleshoot the Image Pull Error:**
+   - To troubleshoot, you can describe the pod to get more information:
+     ```bash
+     kubectl describe pod nginx-7854ff8877-mvrtr
+     ```
+     Look for error messages related to the image pull. In this case, it will indicate that the image does not exist.
+
+4. **Fix the Issue:**
+   - Update the deployment YAML to use the correct image tag:
+     ```yaml
+     containers:
+     - image: nginx:latest
+       name: nginx
+     ```
+
+   - Apply the changes:
+     ```bash
+     kubectl apply -f nginx.yaml
+     ```
+
+   - Verify the pod status:
+     ```bash
+     kubectl get pods
+     ```
+
+---
+
+#### 6.4 Pod and Container Status Issues and Fixes
+
+Here are some common pod and container status issues you may encounter, along with troubleshooting steps and fixes.
+
+1. **Pod Status: CrashLoopBackOff**
+   - **Cause:** The container within the pod repeatedly crashes (often due to application errors).
+   - **Troubleshooting:**
+     ```bash
+     kubectl describe pod <pod_name>
+     kubectl logs <pod_name>
+     ```
+     - Look for error messages in the logs and investigate the container's behavior.
+   - **Fix:** Modify the deployment YAML or the container configuration to fix the application errors. You might need to adjust resource limits, environment variables, or code.
+
+2. **Pod Status: Pending**
+   - **Cause:** The pod cannot be scheduled because there are not enough resources available.
+   - **Troubleshooting:**
+     ```bash
+     kubectl describe pod <pod_name>
+     ```
+     - Check the events section for resource allocation issues.
+   - **Fix:** Ensure that the node has enough resources (CPU, memory) or scale up your cluster if necessary.
+
+3. **Pod Status: Terminating**
+   - **Cause:** The pod is stuck in the `Terminating` state due to an issue with the deletion process (e.g., finalizers not completing).
+   - **Troubleshooting:**
+     ```bash
+     kubectl get pod <pod_name> -o yaml
+     ```
+     - Check for the `finalizers` field and any associated issues.
+   - **Fix:** Force delete the pod if necessary:
+     ```bash
+     kubectl delete pod <pod_name> --force --grace-period=0
+     ```
+
+4. **Container Status: Waiting (Reason: ContainerCreating)**
+   - **Cause:** The container is waiting for necessary resources or dependencies.
+   - **Troubleshooting:**
+     ```bash
+     kubectl describe pod <pod_name>
+     ```
+     - Check the events section for more information on why the container is stuck in this state.
+   - **Fix:** Ensure the required resources (e.g., images, volumes) are available and accessible.
+
+5. **Container Status: Running (but Application is Not Responding)**
+   - **Cause:** The container is running, but the application inside it is not behaving as expected (e.g., not starting, crashing).
+   - **Troubleshooting:**
+     ```bash
+     kubectl logs <pod_name> -c <container_name>
+     kubectl exec -it <pod_name> -- /bin/bash
+     ```
+     - Use the logs and interactive shell to investigate the application inside the container.
+   - **Fix:** Modify the application configuration, fix any application-level issues, or redeploy the pod.
+
+---
+
+By following these steps, you can troubleshoot various pod and container issues, including node tainting, incorrect image names, and common status problems, ensuring your Kubernetes deployments run smoothly.
 
 
 
