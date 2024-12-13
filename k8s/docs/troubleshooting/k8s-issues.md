@@ -387,6 +387,43 @@ By following these steps, you can successfully diagnose and resolve issues causi
 
 ---
 
+Sure! Here's Section 5, formatted for you to append to the original guide:
+
+---
+
+### Section 5: Understanding Container Logs
+
+In this section, you will learn how to check and access container logs using `crictl` commands. These logs are crucial for troubleshooting and understanding container behavior.
+
+#### Steps to Check Container Logs:
+
+1. **Navigate to Worker Node:**
+   - Log in to the worker-node-2 in the LMS dashboard.
+
+2. **Fetch the Container ID:**
+   - Use the following command to fetch the container ID:
+     ```bash
+     sudo crictl ps -a
+     ```
+
+3. **Access and View Container Logs:**
+   - To view the logs of a specific container, use the following command:
+     ```bash
+     sudo crictl logs <container_id>
+     ```
+     Replace `<container_id>` with the actual container ID from the previous command.
+
+4. **Retrieve the Latest Log Entry:**
+   - If you need to retrieve the most recent log entry, use the following command:
+     ```bash
+     sudo crictl logs --tail=1 <container_id>
+     ```
+     This will return the latest log entry for the specified container.
+
+By following these steps, you have successfully demonstrated how to use `crictl` commands to monitor container logs and troubleshoot container-related issues.
+
+---
+
 
 
 
