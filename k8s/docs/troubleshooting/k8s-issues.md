@@ -865,7 +865,187 @@ By following these steps, you can successfully gather diagnostic information abo
 
 ---
 
+### Section 9: Troubleshooting Networking Issues
+
+In this section, you will learn how to troubleshoot networking issues by setting up an `httpd` pod, creating an `httpd` service, checking pod labels, and testing the service connectivity.
+
+---
+
+#### 9.1 Create an HTTPD Pod
+
+1. **Install the Metrics API:**
+   - To begin troubleshooting networking issues, you need to install the metrics API:
+     ```bash
+     kubectl apply -f https://github.com/kubernetes-sigs/metricsserver/releases/latest/download/components.yaml
+     ```
+
+   **Objective:** Set up the necessary components to monitor and troubleshoot pod networking in the cluster.
+
+2. **Create the HTTPD Pod:**
+   1.2 Create a YAML file for the `httpd-pod` with the following content:
+   ```bash
+   vim network-issue.yaml
+   ```
+   ```yaml
+   apiVersion: v1
+   kind: Pod
+   metadata:
+     name: httpd-pod
+     labels:
+       mycka: ckacourse-network-1
+   spec:
+     containers:
+     - name: mycontainer
+       image: docker.io/httpd
+       ports:
+       - containerPort: 80
+   ```
+
+   1.3 Execute the following command to create the pod:
+   ```bash
+   kubectl create -f network-issue.yaml
+   ```
+
+   **Expected Outcome:** The pod should be created and running. Check the pod status using:
+   ```bash
+   kubectl get pods
+   ```
+
+---
+
+#### 9.2 Create an HTTPD Service
+
+1. **Create the HTTPD Service:**
+   2.1 Create a YAML file for the `httpd` service:
+   ```bash
+   vi network-issue-svc.yaml
+   ```
+   ```yaml
+   apiVersion: v1
+   kind: Service
+   metadata:
+     name: httpd-service
+   spec:
+     selector:
+       mycka: ckacourse-network-1
+     ports:
+     - protocol: TCP
+       port: 18080
+       targetPort: 80
+   ```
+
+   2.2 Execute the following command to create the service:
+   ```bash
+   kubectl create -f network-issue-svc.yaml
+   ```
+
+   **Expected Outcome:** The service should be created and accessible. Check the service status:
+   ```bash
+   kubectl get svc
+   ```
+
+---
+
+#### 9.3 Check Labels for All Pods
+
+1. **Check Pod Labels:**
+   3.1 To view the labels for all pods, run the following command:
+   ```bash
+   kubectl get pods --show-labels
+   ```
+
+2. **Get Endpoints:**
+   3.2 To check the service endpoints, execute:
+   ```bash
+   kubectl get svc -o wide
+   kubectl get endpoints
+   ```
+
+3. **Verify Service Connectivity:**
+   3.3 Use the following command to verify if the service is responding correctly. Replace `172.16.232.199` with your cluster's `httpd-service` cluster IP:
+   ```bash
+   curl 172.16.232.199:80
+   ```
+
+4. **Delete the Service:**
+   3.4 Delete the `httpd-service`:
+   ```bash
+   kubectl get svc
+   kubectl delete svc httpd-service
+   ```
+
+---
+
+#### 9.4 Modify and Create a New Service
+
+1. **Modify Service YAML:**
+   3.5 Edit the `network-issue-svc.yaml` file to use a different network name:
+   ```bash
+   vi network-issue-svc.yaml
+   ```
+   ```yaml
+   apiVersion: v1
+   kind: Service
+   metadata:
+     name: httpd-service
+   spec:
+     selector:
+       mycka: ckacourse-network-2
+     ports:
+     - protocol: TCP
+       port: 18080
+       targetPort: 80
+   ```
+
+2. **Create the Modified Service:**
+   3.6 Create the new service:
+   ```bash
+   kubectl create -f network-issue-svc.yaml
+   ```
+
+3. **Check the Pod Labels Again:**
+   3.7 List the pods with their labels:
+   ```bash
+   kubectl get pods --show-labels
+   ```
+
+4. **Retrieve the Cluster IP and Endpoints:**
+   3.8 Retrieve the service's cluster IP and endpoints:
+   ```bash
+   kubectl get svc -o wide
+   kubectl get endpoints
+   ```
+
+5. **Verify Service Connectivity:**
+   3.9 Access the service again using `curl`:
+   ```bash
+   curl 172.16.232.199:8080
+   ```
+
+---
+
+By following these steps, you will have successfully set up an `httpd` pod and service, performed troubleshooting steps, and verified the network connectivity within your Kubernetes environment.
+
+---
+
+### Additional Reading
+
+For more in-depth understanding, you can refer to the following resources:
+
+- [Kubernetes Documentation - Troubleshooting](https://kubernetes.io/docs/tasks/debug/debug-cluster/)
+- [Kubernetes Networking Concepts](https://kubernetes.io/docs/concepts/services-networking/)
+- [CKA Exam Preparation Guide](https://www.cncf.io/certification/certified-kubernetes-administrator/)
+
+---
+
+### Importance of Troubleshooting Skills
+
+In a **job** or **interview** scenario, troubleshooting skills are highly valued as they demonstrate your ability to solve complex problems under pressure. For example, during an interview for a Kubernetes-related position, employers will often ask you to troubleshoot a Kubernetes cluster or application failure. Having hands-on experience in diagnosing and fixing issues with networking, pods, containers, and services will set you apart.
+
+In the **CKA exam**, troubleshooting is a key component. You'll be asked to resolve cluster issues, network failures, and pod-related problems. Having practiced these scenarios will not only help you pass the exam but also prepare you for real-world challenges as a Kubernetes administrator.
 
 
+By regularly practicing troubleshooting scenarios, you can ensure you're well-prepared for both the CKA exam and practical job situations.
 
+---
 
