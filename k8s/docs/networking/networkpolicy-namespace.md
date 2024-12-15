@@ -188,4 +188,5 @@ By applying the `deny-from-other-namespaces` NetworkPolicy:
 - Traffic within the same namespace is allowed.
 - This demonstrates how NetworkPolicies enforce fine-grained control over network traffic in Kubernetes. 
 
-Let me know if you'd like more clarification or help testing this further!
+---
+
