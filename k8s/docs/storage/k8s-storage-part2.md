@@ -1,7 +1,3 @@
-Here’s the revised and logically structured version starting with **Container Storage Interface (CSI)** and followed by the rest of the topics, along with the lifecycle of a Persistent Volume:
-
----
-
 ## **1. Container Storage Interface (CSI)**
 
 **What is CSI?**  
