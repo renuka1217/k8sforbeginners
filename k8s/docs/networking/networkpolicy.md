@@ -99,8 +99,8 @@ kubectl get networkpolicy
 #### **3. Test Allow Ingress**
 Run a testing pod **with matching labels**:
 ```bash
-kubectl run --rm -i -t --image=alpine test-$RANDOM --labels="app=simplilearn" -- sh
-wget -qO- http://simplilearn
+kubectl run --image=nginx test-$RANDOM --labels="app=simplilearn"
+kubectl exec -it test-<podname> -- wget -qO- http://simplilearn
 ```
 
 Expected Result:
