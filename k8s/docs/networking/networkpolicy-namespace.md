@@ -123,9 +123,9 @@ kubectl get networkpolicy -n default
 
 1. **Check Connectivity From `default` to `test` Namespace**:
    ```bash
-   kubectl exec pod1 -- curl pod2.test.svc.cluster.local
+   kubectl exec pod2 -- curl pod1.default.svc.cluster.local
    ```
-   **Expected Result**: The request fails because the NetworkPolicy blocks traffic from other namespaces.
+   **Expected Result**: The request fails because the NetworkPolicy blocks traffic from other namespaces. Here networkpolicy is applied to default namespace, so pod1 running in that namespace is blocking traffic from pod2 running in other namespace.  For the same behavior for test namespace, apply and test the network policy for test name space also.
 
 2. **Check Connectivity Within the Same Namespace (`default`)**:
    ```bash
@@ -140,8 +140,8 @@ kubectl get networkpolicy -n default
 | **Scenario**                       | **Without NetworkPolicy** | **With NetworkPolicy** |
 |-------------------------------------|---------------------------|-------------------------|
 | Pod in `default` → Pod in `default` | Allowed                   | Allowed                |
-| Pod in `default` → Pod in `test`    | Allowed                   | Denied                 |
-| Pod in `test` → Pod in `default`    | Allowed                   | Denied                 |
+| Pod in `default` → Pod in `test`    | Allowed                   | Denied  (policy applied on the test namespace)                |
+| Pod in `test` → Pod in `default`    | Allowed                   | Denied   (policy applied on the default namespace)               |
 | Pod in `test` → Pod in `test`       | Allowed                   | Allowed (unaffected)   |
 
 ---
