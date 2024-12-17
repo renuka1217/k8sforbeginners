@@ -830,7 +830,6 @@ Common causes include:
    ```  
 ```
 
-```markdown
 ## Networking and Service Connectivity (Continued)
 
 ### 101. A Multi-Port Service Pod is not accessible through its secondary port. How would you debug this issue?  
