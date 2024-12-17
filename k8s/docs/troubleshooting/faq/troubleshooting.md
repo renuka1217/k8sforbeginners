@@ -1,4 +1,4 @@
-# Advanced Kubernetes Troubleshooting
+# Kubernetes Troubleshooting
 
 ## Introduction
 
