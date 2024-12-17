@@ -828,7 +828,7 @@ Common causes include:
    ```bash
    calicoctl get policy
    ```  
-```
+
 
 ## Networking and Service Connectivity (Continued)
 
@@ -1009,12 +1009,13 @@ Common causes include:
    ```bash
    kubectl describe pod <pod-name>
    ```  
-```
+
 
 ----
 
     
-### **Logs and Events (100–109)**  
+### **Logs and Events (100–109)**
+
 100. **Logs for an application pod are incomplete or truncated. How would you address this issue?**  
    - Ensure proper logging configuration in the application.  
    - Check the log rotation and retention policies on the node.  
