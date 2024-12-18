@@ -76,7 +76,6 @@ Kubectl can interact with a control plane that is:
 
 # Control Plane and Worker Node Version Compatibility: Important Tips and Notes
 
----
 
 ## Key Compatibility Rules
 
