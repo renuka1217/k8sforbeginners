@@ -127,7 +127,6 @@ Kubectl can interact with a control plane that is:
 3. **Keep kubeadm, kubelet, and kubectl Aligned**
    - Use the same minor version for `kubeadm`, `kubelet`, and `kubectl` where possible. Update `kubeadm` first, then `kubelet`, and final
 
----# Control Plane and Worker Node Version Compatibility: Important Tips and Notes
 
 ---
 
