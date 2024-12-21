@@ -1,5 +1,5 @@
 
 Business Case: Transforming Supermarket Operations with Hybrid Cloud and Kubernetes
 
-![image](https://github.com/user-attachments/assets/63a82c1a-2109-4115-92cb-1050abd9fc12)
+![diagram-export-12-21-2024-2_45_13-PM](https://github.com/user-attachments/assets/726ec371-8c74-4430-9220-260f8c787526)
 
