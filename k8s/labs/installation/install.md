@@ -121,4 +121,7 @@ Run the join command on each worker node to connect them to the cluster.
    kubectl get pods -A
    ```
 
+## Next Steps
+
+You can now use this environment to learn Kuberenetes further.
 
