@@ -107,27 +107,32 @@ kubectl get deployment ;
 kubectl delete pods
 
 # Create a ConfigMap in the 'role' namespace
-kubectl create configmap my-config --from-literal=key1=config1 --kubeconfig=myconf
+
+kubectl create configmap my-config --from-literal=key1=config1 --kubeconfig=config
+
+## Above command would fail due to the permission assigned to user3
+error: failed to create configmap: configmaps is forbidden: User "user3" cannot create resource "configmaps" in API group "" in the namespace "role"
 
 # View the created ConfigMap
-kubectl get configmaps ; 
-kubectl get configmap my-config -o yaml
+kubectl get configmaps
 
+## Above command would fail due to the permission assigned to user3
+error: failed to create configmap: configmaps is forbidden: User "user3" cannot create resource "configmaps" in API group "" in the namespace "role"
 
 # File Management and Key Distribution (OPTIONAL steps to distribute to the worker nodes for kubectl to work for user3)
 
-# Navigate back to the home directory
+## Navigate back to the home directory
 cd ..
 
-# View the certificate and key files
+## View the certificate and key files
 cat user3.crt
 cat user3.key
 
-# Copy files to the worker node (example commands for manual steps)
+## Copy files to the worker node (example commands for manual steps)
 scp user3.crt worker-node-1:/role/
 scp user3.key worker-node-1:/role/
 
-# On the worker node, create a directory and add files
+## On the worker node, create a directory and add files
 mkdir -p /role && cd /role
 vi user3.crt  # Paste the certificate content
 vi user3.key  # Paste the key content
