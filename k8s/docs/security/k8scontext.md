@@ -238,6 +238,6 @@ Kubernetes contexts simplify managing multiple clusters, users, and namespaces b
 
 - [Kubernetes Official Documentation on Contexts](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#config)
 - [Managing Multiple Clusters with Kubeconfig](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/)
-```
 
-This tutorial provides a comprehensive guide to Kubernetes contexts, offering both conceptual understanding and practical exercises for administrators.
+
+
