@@ -1,4 +1,6 @@
-# RBAC Demo
+# Kuberentes RBAC Demo
+
+Go through the RBAC concepts before trying this exercise to understand the basics.
 
 # Create a namespace named 'role'
 kubectl create namespace role
