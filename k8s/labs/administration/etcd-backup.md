@@ -123,6 +123,7 @@ Save the following script as `/opt/etcd-backup.sh`:
 
 ```bash
 #!/bin/bash
+#!/bin/bash
 export ETCDCTL_API=3
 export ETCDCTL_CACERT=/etc/kubernetes/pki/etcd/ca.crt
 export ETCDCTL_CERT=/etc/kubernetes/pki/etcd/server.crt
@@ -141,9 +142,10 @@ find $BACKUP_DIR -type f -name "*.db" -mtime +7 -exec rm {} \;
 echo "ETCD backup completed: $SNAPSHOT"
 ```
 
-### 2. Make the Script Executable
+### 2. Make the Script Executable and try running once
 ```bash
 chmod +x /opt/etcd-backup.sh
+sudo /opt/etcd-backup.sh
 ```
 
 ### 3. Set Up a Cron Job
