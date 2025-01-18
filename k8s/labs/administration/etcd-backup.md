@@ -30,7 +30,7 @@ kubectl -n kube-system exec etcd-master.example.com -- etcdctl member list \
 ### output
 a0b86504f30e9756, started, master.example.com, https://172.31.28.251:2380, https://172.31.28.251:2379, false
 
-### 
+### assign the advertise_url using export command
 
 ```bash
 export advertise_url=https://172.31.28.251:2379
