@@ -64,15 +64,16 @@ kubectl get rolebinding -n role
 
 # Set Up User Credentials
 
-# Assign credentials to user3 using the certificate and key
+## Assign credentials to user3 using the certificate and key
 kubectl config set-credentials user3 --client-certificate=/home/labsuser/role/user3.crt --client-key=/home/labsuser/role/user3.key
 
-# Set up a context for user3 in the 'role' namespace
+## Set up a context for user3 in the 'role' namespace
 kubectl config set-context user3-context --cluster=kubernetes --namespace=role --user=user3
 
-# Display all contexts
+## Display all contexts
 kubectl config get-contexts
-### Output
+
+## Output
 ```
 labsuser@master:~/role$ kubectl config get-contexts
 CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPACE
@@ -80,7 +81,7 @@ CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPAC
           user3-context                 kubernetes   user3              role
 ```
 
-# View the current kubeconfig file for user3 context
+## View the current kubeconfig file for user3 context
 	
 cd .. ; 
 cat .kube/config
