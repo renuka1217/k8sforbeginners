@@ -182,8 +182,12 @@ spec:
 Update the deployment image to **Version 2**:
 ```bash
 kubectl set image deployment/apache-deployment apache-container=karthickponcloud/k8slabs:apache_v2 --record
-```
 
+```
+Annotate the deployment as record option will be deprecated:
+```bash
+kubectl annotate deployment/apache-deployment change_history="Apache version 2"
+```
 ---
 
 ### **3.2 Verify Rollout**
