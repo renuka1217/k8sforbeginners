@@ -239,8 +239,14 @@ View the deployment history:
 ```bash
 kubectl rollout history deployment/apache-deployment
 ```
-
 You’ll see revisions and change details.
+
+Alternatively, --to-revision parameter is used to undo the deployment and point a particular version from the history
+```bash
+kubectl rollout undo deployment/apache-deployment --to-revision=2
+```
+
+Above command will undo the deployment and directly going back to version 2 in the history. You may verify the deployment by accessing the service.
 
 ---
 
