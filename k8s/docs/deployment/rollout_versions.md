@@ -186,7 +186,7 @@ kubectl set image deployment/apache-deployment apache-container=karthickponcloud
 ```
 Annotate the deployment as record option will be deprecated:
 ```bash
-kubectl annotate deployment mydep kubernetes.io/change-cause="Apache version 2"
+kubectl annotate deployment deployment/apache-deployment  kubernetes.io/change-cause="Apache version 2"
 ```
 ---
 
