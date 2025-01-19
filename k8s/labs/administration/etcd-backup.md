@@ -22,9 +22,9 @@ sudo apt install etcd-client
 Create a snapshot of the `etcd` database to preserve the cluster state for recovery.
 
 ### Get the endpoint address using
-kubectl -n kube-system exec etcd-master.example.com -- etcdctl member list \
-  --cacert=/etc/kubernetes/pki/etcd/ca.crt \
-  --cert=/etc/kubernetes/pki/etcd/server.crt \
+kubectl -n kube-system exec etcd-master.example.com -- etcdctl member list \\
+  --cacert=/etc/kubernetes/pki/etcd/ca.crt \\
+  --cert=/etc/kubernetes/pki/etcd/server.crt \\
   --key=/etc/kubernetes/pki/etcd/server.key
 
 ### output
