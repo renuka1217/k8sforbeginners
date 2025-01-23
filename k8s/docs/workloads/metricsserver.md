@@ -11,9 +11,7 @@ Metrics Server is an aggregator for resource usage data, such as CPU and memory,
 Steps for Creating and Configuring the metrics server
 # Create a new YAML file for defining a deployment
 ```bash
-nano metricsserver.yaml
-
-Content of metricsserver.yaml:
+##Content of metricsserver.yaml:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
