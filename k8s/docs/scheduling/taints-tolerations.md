@@ -49,12 +49,12 @@ Taint both `worker-node-1` and `worker-node-2` to ensure pods without toleration
 ### **Commands to Apply Taints**
 For `worker-node-1`:
 ```bash
-kubectl taint nodes worker-node-1 key=example-taint:NoSchedule
+kubectl taint nodes worker-node-1 dedicated=production:NoSchedule
 ```
 
 For `worker-node-2`:
 ```bash
-kubectl taint nodes worker-node-2 key=example-taint:NoSchedule
+kubectl taint nodes worker-node-1 dedicated=production:NoSchedule
 ```
 
 ### **Verify Taints**
@@ -67,7 +67,7 @@ kubectl describe node worker-node-2 | grep -i taints
 
 Expected output:
 ```plaintext
-Taints: key=example-taint:NoSchedule
+Taints: dedicated=production:NoSchedule
 ```
 
 ---
@@ -122,7 +122,7 @@ kubectl describe pod no-tolerations-pod
 
 Look for the `Events` section, which will show a message like:
 ```plaintext
-0/2 nodes are available: 2 node(s) had taint {key: example-taint}, that the pod didn't tolerate.
+0/2 nodes are available: 2 node(s) had taint {dedicated: production}, that the pod didn't tolerate.
 ```
 
 ---
@@ -137,12 +137,12 @@ Create a new YAML file (`tolerations-pod.yaml`):
 apiVersion: v1
 kind: Pod
 metadata:
-  name: tolerations-pod
+  name: tolerations-pod-prod
 spec:
   tolerations:
-  - key: "key"
+  - key: "dedicated"
     operator: "Equal"
-    value: "example-taint"
+    value: "production"
     effect: "NoSchedule"
   containers:
   - name: nginx
