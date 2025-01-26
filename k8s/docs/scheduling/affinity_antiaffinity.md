@@ -168,6 +168,18 @@ To validate your understanding:
 
 ---
 
+## Difference Between nodeSelector and nodeAffinity
+
+Both nodeSelector and nodeAffinity are Kubernetes features used to control the placement of Pods based on node labels. However, they differ in flexibility and use cases:
+
+Feature	nodeSelector	nodeAffinity
+Definition	A simple key-value matching mechanism to schedule Pods on specific nodes.	A more flexible and expressive method for scheduling Pods on nodes.
+Capabilities	Only supports exact match (key=value).	Supports operators like In, NotIn, Exists, etc.
+Complexity	Simple and less configurable.	Advanced and supports complex matching logic.
+Types	No types (basic match only).	Two types: requiredDuringSchedulingIgnoredDuringExecution and preferredDuringSchedulingIgnoredDuringExecution.
+Use Case	Best for basic scheduling needs.	Ideal for more complex scheduling scenarios.
+Example: nodeSelector
+
 ## Conclusion
 Affinity and Anti-Affinity are essential tools for controlling Pod placement in Kubernetes. They allow you to:
 - Optimize resource utilization.
