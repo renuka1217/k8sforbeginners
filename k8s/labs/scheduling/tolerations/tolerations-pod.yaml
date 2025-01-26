@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: tolerations-pod-high-priority
+  name: tolerations-pod-prod
 spec:
   tolerations:
   - key: "dedicated"
