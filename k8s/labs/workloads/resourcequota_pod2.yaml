@@ -5,12 +5,12 @@ metadata:
   namespace: quotaz
 spec:
   containers:
-  - name: quota-mem-cpu-demo-2-ctr
-    image: redis
+  - name: quota-mem-cpu-demo-ctr
+    image: nginx
     resources:
       limits:
-        memory: "2Gi"
-        cpu: "800m"
+        memory: "800Mi"   # 0.8 GiB
+        cpu: "800m"       # 0.8 CPU
       requests:
-        memory: "700Mi"
-        cpu: "400m"
+        memory: "600Mi"   # 0.6 GiB
+        cpu: "400m"       # 0.4 CPU
