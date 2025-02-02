@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: compliant-pod
+  labels:
+    name: nginx-app
+    environment: production
+    costApprover: finance-team
+    businessOwner: devops-team
+spec:
+  containers:
+  - name: nginx
+    image: nginx:latest
+
