@@ -1,7 +1,7 @@
 
 
 
-```md
+
 - The Elastic Network Interface is automatically attached to the Amazon Elastic Compute Cloud (Amazon EC2) bare metal (ESXi) hosts in VMware Cloud on AWS during the software-defined data center (SDDC) provisioning.
 
 - Provision fully managed Amazon Elastic Kubernetes Service (Amazon EKS) clusters for different environments (dev/test/production).
@@ -25,6 +25,6 @@
 - CodeBuild uses a Kubectl command-line tool to invoke the Kubernetes API and update the image tag for the microservice deployment.
 
 - Kubernetes performs a rolling update of the pods in the application deployment according to the new Docker image specified in Amazon ECR.
-```
+
 
 This Markdown format ensures readability and maintains a structured flow. Let me know if you need further modifications! 🚀
