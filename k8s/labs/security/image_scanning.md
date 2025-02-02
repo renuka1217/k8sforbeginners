@@ -83,12 +83,17 @@ trivy image nginx:latest
 ```
 This command will output a list of detected vulnerabilities, including their severity levels (Critical, High, Medium, Low, Unknown).
 
-### Step 3: Scan with JSON Output (For Automation)
+### Step 3: Scan with JSON Output
 ```sh
 trivy image -f json -o report.json nginx:latest
 ```
+### Step 4: Scan with HTML Output
+```sh
+trivy image --format template --template "@/usr/local/share/trivy/templates/html.tpl" nginx:latest -o /tmp/nginx_findings.html
+```
+Open the HTML file in the browser and validate the output. Check for the listed vulnerabilities for the image scanned.
 
-### Step 4: Scan a Running Kubernetes Workload
+### Step 5: Scan a Running Kubernetes Workload
 ```sh
 trivy k8s cluster --namespace default
 ```
