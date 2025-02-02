@@ -56,7 +56,7 @@
 
 **Use Case:** To manage its extensive microservices architecture and improve developer productivity, Pinterest adopted Kubernetes as part of its compute platform.
 
-**Technical Architecture:** Pinterest's architecture includes a regional Platform-as-a-Service (PaaS) named PinCompute, built on top of Kubernetes. PinCompute's architecture consists of a host Kubernetes cluster that manages various services and workloads. ([medium.com](https://medium.com/pinterest-engineering/pincompute-a-kubernetes-backed-general-purpose-compute-platform-for-pinterest-8ad408df2d6f?utm_source=chatgpt.com))
+**Technical Architecture:** Pinterest's architecture includes a regional Platform-as-a-Service (PaaS) named PinCompute, built on top of Kubernetes. PinCompute's architecture consists of a host Kubernetes cluster that manages various services and workloads. 
 
 **Benefits:** By leveraging Kubernetes, Pinterest has achieved:
 
@@ -64,7 +64,7 @@
 
 - **Simplified Deployment:** Streamlined processes for deploying and managing services.
 
-- **Resource Efficiency:** Reclaimed over 80% of capacity during non-peak hours, leading to significant cost savings. ([kubernetes.io](https://kubernetes.io/case-studies/pinterest/?utm_source=chatgpt.com))
+- **Resource Efficiency:** Reclaimed over 80% of capacity during non-peak hours, leading to significant cost savings.
 
 **5. Nokia**
 
