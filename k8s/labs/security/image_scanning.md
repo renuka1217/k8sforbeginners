@@ -16,12 +16,12 @@ Trivy can be installed in multiple ways. Below are the installation steps for co
 
 ### Installing on Linux/macOS
 ```sh
-brew install aquasecurity/trivy/trivy  # Using Homebrew (macOS)
-```
-```sh
-sudo apt update && sudo apt install -y wget
-wget https://github.com/aquasecurity/trivy/releases/latest/download/trivy_Linux-64bit.tar.gz
-sudo tar -xvzf trivy_Linux-64bit.tar.gz -C /usr/local/bin/
+sudo apt-get install wget apt-transport-https gnupg lsb-release
+wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
+echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
+sudo apt-get update
+sudo apt-get install trivy
+
 ```
 
 ### Installing on Windows
