@@ -1,4 +1,4 @@
-**Overview of Vulnerabilities in General**
+# Overview of Vulnerabilities and Kubernetes Vulnerabilities Management
 
 ### What Are Vulnerabilities?
 Vulnerabilities are weaknesses in software, hardware, or configurations that attackers can exploit to compromise a system. These weaknesses can arise due to coding errors, misconfigurations, outdated software, or improper access control.
