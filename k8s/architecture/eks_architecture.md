@@ -1,7 +1,10 @@
 # Modernize Applications with Microservices Using Amazon EKS
 
-Refer this architecture
+## Refer this architecture
 
+![image](https://github.com/user-attachments/assets/244b26f8-beb3-4001-b88f-4b6cfcbafa58)
+
+## Architecture Notes
 
 - The Elastic Network Interface is automatically attached to the Amazon Elastic Compute Cloud (Amazon EC2) bare metal (ESXi) hosts in VMware Cloud on AWS during the software-defined data center (SDDC) provisioning.
 
