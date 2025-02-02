@@ -31,4 +31,4 @@
 - Kubernetes performs a rolling update of the pods in the application deployment according to the new Docker image specified in Amazon ECR.
 
 
-This Markdown format ensures readability and maintains a structured flow. Let me know if you need further modifications! 🚀
+### Refer AWS Architecture Center for similar architectures.
