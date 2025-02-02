@@ -95,7 +95,7 @@ Open the HTML file in the browser and validate the output. Check for the listed 
 
 ### Step 5: Scan a Running Kubernetes Workload
 ```sh
-trivy k8s cluster --namespace default
+trivy k8s --include-namespaces default --report summary 
 ```
 This will scan all resources in the default namespace of the Kubernetes cluster.
 
