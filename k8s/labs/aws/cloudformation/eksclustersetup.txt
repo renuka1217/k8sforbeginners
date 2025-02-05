@@ -1,0 +1,100 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "AWS EKS Cluster with 2 worker nodes in us-east-1a and us-east-1b"
+
+Parameters:
+  ClusterName:
+    Type: String
+    Default: "eksdemo"
+
+  KubernetesVersion:
+    Type: String
+    Default: "1.30"
+
+  NodeInstanceType:
+    Type: String
+    Default: "t3.medium"
+
+  KeyName:
+    Type: AWS::EC2::KeyPair::KeyName
+    Description: "SSH KeyPair for the worker nodes"
+
+  VpcId:
+    Type: AWS::EC2::VPC::Id
+    Description: "VPC where EKS will be deployed"
+
+  Subnet1:
+    Type: AWS::EC2::Subnet::Id
+    Description: "Subnet in us-east-1a"
+
+  Subnet2:
+    Type: AWS::EC2::Subnet::Id
+    Description: "Subnet in us-east-1b"
+
+Resources:
+  EKSCluster:
+    Type: "AWS::EKS::Cluster"
+    Properties:
+      Name: !Ref ClusterName
+      Version: !Ref KubernetesVersion
+      RoleArn: !GetAtt EKSClusterRole.Arn
+      ResourcesVpcConfig:
+        SubnetIds:
+          - !Ref Subnet1
+          - !Ref Subnet2
+
+  EKSClusterRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      RoleName: !Sub "${ClusterName}-EKS-Role"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service: "eks.amazonaws.com"
+            Action: "sts:AssumeRole"
+      ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
+
+  NodeGroup:
+    Type: "AWS::EKS::Nodegroup"
+    Properties:
+      ClusterName: !Ref EKSCluster
+      NodeRole: !GetAtt NodeInstanceRole.Arn
+      Subnets:
+        - !Ref Subnet1
+        - !Ref Subnet2
+      InstanceTypes:
+        - !Ref NodeInstanceType
+      ScalingConfig:
+        MinSize: 2
+        MaxSize: 2
+        DesiredSize: 2
+      AmiType: "AL2_x86_64"
+      DiskSize: 20
+
+  NodeInstanceRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      RoleName: !Sub "${ClusterName}-Node-Role"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service: "ec2.amazonaws.com"
+            Action: "sts:AssumeRole"
+      ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
+        - "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+        - "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
+
+Outputs:
+  ClusterName:
+    Description: "Name of the EKS Cluster"
+    Value: !Ref EKSCluster
+
+  ClusterEndpoint:
+    Description: "API Server Endpoint"
+    Value: !GetAtt EKSCluster.Endpoint
+
