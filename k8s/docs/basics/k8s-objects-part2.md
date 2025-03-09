@@ -1,4 +1,4 @@
-```markdown
+
 # Kubernetes Objects: Advanced Guide for Administrators (Part - 2)
 
 ## Introduction
