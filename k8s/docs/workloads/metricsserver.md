@@ -8,8 +8,9 @@ Metrics Server is an aggregator for resource usage data, such as CPU and memory,
 ### Debugging Performance Issues: Helps identify resource bottlenecks or misconfigured workloads.
 ### Capacity Planning: Enables better planning and optimization of cluster resources.
 
-Steps for Creating and Configuring the metrics server
-# Create a new YAML file for defining a deployment
+# Steps for Creating and Configuring the metrics server
+
+### Create a new YAML file for defining a deployment
 ```bash
 ##Content of metricsserver.yaml:
 apiVersion: apps/v1
@@ -35,49 +36,49 @@ spec:
 
 ```
 
-# Create a deployment using the YAML file
+### Create a deployment using the YAML file
 kubectl create -f deployment.yaml
 
-# Check the status of the deployment named 'frontend'
+### Check the status of the deployment named 'frontend'
 kubectl get deployment frontend
 
-# List all ReplicaSets in the current namespace
+### List all ReplicaSets in the current namespace
 kubectl get rs
 
-# List all pods with the label 'tier=frontend'
+### List all pods with the label 'tier=frontend'
 kubectl get pods -l tier=frontend
 
-# Describe the deployment named 'frontend'
+### Describe the deployment named 'frontend'
 kubectl describe deploy/frontend
 
-# Apply the metrics server components from the official repository
+### Apply the metrics server components from the official repository
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 
-# Verify the status of the metrics server pods in the 'kube-system' namespace
+###Verify the status of the metrics server pods in the 'kube-system' namespace
 kubectl get pods -n kube-system
 
-# Download the patch file for the metrics server
+### Download the patch file for the metrics server
 wget -c https://gist.githubusercontent.com/initcron/1a2bd25353e1faa22a0ad41ad1c01b62/raw/008e23f9fbf4d7e2cf79df1dd008de2f1db62a10/k8s-metrics-server.patch.yaml
 
-# View the content of the patch file
+### View the content of the patch file
 cat k8s-metrics-server.patch.yaml
 
-# Patch the metrics server deployment using the downloaded patch file
+### Patch the metrics server deployment using the downloaded patch file
 kubectl patch deploy metrics-server -p "$(cat k8s-metrics-server.patch.yaml)" -n kube-system
 
-# Verify the metrics server is running by checking its pods in the 'kube-system' namespace
+### Verify the metrics server is running by checking its pods in the 'kube-system' namespace
 kubectl get pods -n kube-system
 
-# List resource usage (CPU/memory) for all nodes
+### List resource usage (CPU/memory) for all nodes
 kubectl top nodes
 
-# Sort nodes by CPU usage
+### Sort nodes by CPU usage
 kubectl top nodes --sort-by cpu
 
-# Sort nodes by memory usage
+### Sort nodes by memory usage
 kubectl top nodes --sort-by memory
 
-# Display resource usage for a specific node
+### Display resource usage for a specific node
 kubectl top nodes master.example.com
 
 # Key Use Cases:
