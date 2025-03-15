@@ -85,7 +85,7 @@ Apply the following YAML file:
 kubectl apply -f k8s-dashboard.yaml
 ```
 
-You can download the YAML file from [this GitHub repository](https://github.com/devopscert202/ckacoursenov24/blob/main/k8s/labs/k8s-dashboard.yaml).
+You can download the YAML file from [this GitHub repository](https://github.com/devopscert202/ckacoursenov24/blob/main/k8s/labs/workloads/k8s-dashboard.yaml).
 
 ### 3.3 Get the Token to Access the Dashboard
 Generate the token with the following command:
