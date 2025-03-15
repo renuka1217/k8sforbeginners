@@ -67,16 +67,8 @@ helm status kubernetes-dashboard --namespace kubernetes-dashboard
 
 ## Step 3: Access the Dashboard
 
-### 3.1 Port Forward to Access the Dashboard
-Run the following command to port-forward and access the Dashboard:
 
-Note: 8444 is used since 8443 is used by Graphical server in some Debian machines.
-
-```bash
-kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard-kong-proxy 8444:443
-```
-
-### 3.2 Obtain Access Token
+### 3.1 Obtain Access Token
 To access the Dashboard, you need to create an admin-user and set up credentials.
 
 Apply the following YAML file:
@@ -87,14 +79,21 @@ kubectl apply -f k8s-dashboard.yaml
 
 You can download the YAML file from [this GitHub repository](https://github.com/devopscert202/ckacoursenov24/blob/main/k8s/labs/workloads/k8s-dashboard.yaml).
 
-### 3.3 Get the Token to Access the Dashboard
+### 3.2 Get the Token to Access the Dashboard
 Generate the token with the following command:
 
 ```bash
 kubectl -n kubernetes-dashboard create token admin-user
 ```
+### 3.3 Port Forward to Access the Dashboard
+Run the following command to port-forward and access the Dashboard:
 
-Copy the generated token and use it on the Dashboard login page that prompts for a **Bearer Token**.
+Note: 8444 is used since 8443 is used by Graphical server in some Debian machines.
+
+```bash
+kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard-kong-proxy 8444:443
+```
+
 
 ### 3.4 Access the Dashboard
 Open your browser and navigate to:
@@ -102,6 +101,7 @@ Open your browser and navigate to:
 ```
 https://localhost:8444
 ```
+Copy the generated token and use it on the Dashboard login page that prompts for a **Bearer Token**.
 
 Accept the SSL certificate warning and explore various workloads like **Pods**, **Deployments**, and **Services**. You can also try scaling your deployments using the graphical interface.
 
