@@ -192,3 +192,23 @@ Remove configuration files:
 sudo rm -rf /etc/cni/net.d
 ```
 
+## Conclusion
+You have successfully set up a Kubernetes cluster (v1.31) on AWS EC2 instances using containerd as the container runtime and Calico as the networking CNI. The master node is configured to manage the control plane, while worker nodes handle workloads. The cluster was validated by deploying a sample NGINX application and accessing it via NodePort.
+
+In this guide, we have covered:
+
+#### Preparing the infrastructure (AWS EC2 Instances).
+
+#### Installing and configuring essential components (containerd, Kubernetes tools).
+
+#### Enabling necessary kernel modules for networking.
+
+#### Bootstrapping the cluster and joining worker nodes.
+
+#### Securing communication between control and data planes via Security Groups and NACLs.
+
+#### Verifying the cluster functionality through application deployment.
+
+#### Troubleshooting common issues related to networking, tokens, and services.
+
+The setup ensures a functional Kubernetes cluster that can be scaled and customized according to your specific requirements. For production-grade clusters, consider implementing enhanced security measures, high availability setups, and monitoring tools.
