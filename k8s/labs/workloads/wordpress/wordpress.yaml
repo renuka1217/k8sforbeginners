@@ -17,12 +17,12 @@ spec:
       containers:
       - name: wordpress
         image: wordpress
+        envFrom:
+        - configMapRef:
+            name: wordpress-config
         env:
-        - name: WORDPRESS_DB_HOST
-          value: mysql
         - name: WORDPRESS_DB_PASSWORD
-          value: simplilearn
-        - name: WORDPRESS_DB_USER
-          value: root
-        - name: WORDPRESS_DB_NAME
-          value: database1
+          valueFrom:
+            secretKeyRef:
+              name: wordpress-secret
+              key: WORDPRESS_DB_PASSWORD
