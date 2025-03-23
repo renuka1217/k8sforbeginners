@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: tolerations-pod-prod
+  name: toleration-production-pod
 spec:
   tolerations:
-  - key: "dedicated"
+  - key: "environment"
     operator: "Equal"
     value: "production"
     effect: "NoSchedule"
