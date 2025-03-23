@@ -351,6 +351,18 @@ spec:
     image: nginx
 ```
 
+Here is a comparison table between **LimitRange** and **ResourceQuota** in Kubernetes:  
+
+| Feature          | LimitRange | ResourceQuota |
+|-----------------|------------|--------------|
+| **Purpose** | Defines resource limits (requests/limits) for individual containers/pods within a namespace. | Sets overall resource consumption limits at the namespace level. |
+| **Scope** | Works at the container or pod level. | Works at the namespace level. |
+| **Enforced on** | CPU, memory, and ephemeral storage requests and limits for containers. | Aggregate resources like CPU, memory, storage, object counts (e.g., pods, services, PVCs) for the whole namespace. |
+| **Key Benefit** | Prevents overconsumption by individual workloads, ensuring fair resource allocation. | Prevents a single namespace from exhausting cluster resources. |
+| **Common Use Cases** | - Setting minimum/maximum CPU and memory per container. <br> - Enforcing default resource requests/limits for containers. | - Restricting total CPU/memory a namespace can use. <br> - Limiting the number of pods, services, or persistent volumes in a namespace. |
+| **Example Fields** | `max`, `min`, `default`, `defaultRequest` | `hard` (defines max limits for resources) |
+| **Example Use Case** | Ensure a pod does not request more than 1 CPU and 2Gi memory. | Restrict a namespace to a total of 10 CPUs and 20Gi memory. |
+
 --- 
 
 This combined tutorial ensures a strong understanding of Kubernetes' advanced scheduling and resource management capabilities, equipping you with the tools to optimize your cluster for efficiency and reliability.
