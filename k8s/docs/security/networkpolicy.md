@@ -100,7 +100,7 @@ kubectl get networkpolicy
 Run a testing pod **with matching labels**:
 ```bash
 kubectl run --image=nginx test-$RANDOM --labels="app=simplilearn"
-kubectl exec -it test-<podname> -- wget -qO- http://simplilearn
+kubectl exec -it test-<podname> -- curl http://simplilearn
 ```
 
 Expected Result:
@@ -138,7 +138,7 @@ kubectl get networkpolicy
 Run a testing pod to verify blocked traffic:
 ```bash
 kubectl run --rm -i -t --image=alpine test-$RANDOM -- sh
-wget -qO- http://simplilearn
+curl http://simplilearn
 ```
 
 Expected Result:
@@ -151,14 +151,14 @@ Expected Result:
 1. **Allow Policy**:
    - Test with a matching label:
      ```bash
-     wget -qO- http://simplilearn
+     curl http://simplilearn
      ```
    - Result: NGINX default page loads, indicating **allowed ingress**.
 
 2. **Deny-All Policy**:
    - Test with any Pod, regardless of labels:
      ```bash
-     wget -qO- http://simplilearn
+     curl http://simplilearn
      ```
    - Result: Traffic is **blocked**, and the connection times out.
 
