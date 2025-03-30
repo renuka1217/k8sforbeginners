@@ -213,7 +213,7 @@ DevSecOps in Kubernetes is no longer optional but a critical necessity in ensuri
 
 ---
 
-## Further Reading
+## Further Reading on Kuberentes Security
 
 ### DevSecOps Tools Documentation
 1. [Kube-Bench Documentation](https://github.com/aquasecurity/kube-bench)
