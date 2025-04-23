@@ -93,7 +93,7 @@ sudo ETCDCTL_API=3 etcdctl --endpoints $advertise_url \
   --cacert /etc/kubernetes/pki/etcd/ca.crt \
   --cert /etc/kubernetes/pki/etcd/server.crt \
   --key /etc/kubernetes/pki/etcd/server.key \
-  snapshot restore /path/to/backup/etcd_backup.db --data-dir /var/lib/etcd-new
+  snapshot restore /tmp/etcd_backup.db --data-dir /var/lib/etcd-new
 ```
 
 #### Explanation:
